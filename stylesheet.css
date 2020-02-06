@@ -1,0 +1,30 @@
+#content_navbar {
+    height: 8%;
+}
+
+#content_history_left {
+    font-family: 'Raleway', sans-serif;
+}
+#content_history_right {
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    font-size: 300%;
+}
+i {
+    font-size: 50px;
+}
+h1 {
+    text-align: center;
+}
+
+#content_history > .row {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#content_history > .row > h5{
+    font-weight: bold;
+}
+body {
+    opacity: 0.1;
+}
