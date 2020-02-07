@@ -17,13 +17,13 @@ class Login extends FormUtilities
 
     private final function get_user_information($username)
     {
-        $res = $this->connection->fetch_rows("SELECT * FROM `users`  WHERE `username` = '$username'");
+        $res = $this->connection->fetch_row_as_array("SELECT * FROM `users`  WHERE `username` = '$username'");
         return $res;
     }
 
     private function check_password($username, $input_password)
     {
-        $res = $this->connection->fetch_rows("SELECT password FROM `users`  WHERE `username` = '$username'");
+        $res = $this->connection->fetch_row_as_array("SELECT password FROM `users`  WHERE `username` = '$username'");
         $stored_password = $res['password'];
         if (password_verify($input_password, $stored_password)) {
             return true;

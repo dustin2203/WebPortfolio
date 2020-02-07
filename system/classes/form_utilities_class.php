@@ -25,7 +25,7 @@ class FormUtilities
     }
 
 # private method to check if all fields are filled in.
-    protected final function check_if_filled_out()
+    public final function check_if_filled_out()
     {
         $fieldargs = func_get_args();
 

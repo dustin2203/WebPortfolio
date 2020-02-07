@@ -1,7 +1,9 @@
 <?php
 //Website Components
-$head_import = require('./components/head_import.html');
-$navbar = require('./components/navbar.html');
+$head_import = require_once('./components/head_import.html');
+$navbar = require_once('./components/navbar.html');
+require_once('./system/classes/classes.php');
+include_once('./system/mysql_settings.php');
 
 ?>
 
@@ -46,69 +48,34 @@ $navbar = require('./components/navbar.html');
 <div class="container" id="content_history">
     <h1>Meine Leistungen</h1>
 
-    <div class="row">
-        <div class="col-9" id="content_history_left">
-            <div id="co"
+    <?php
 
-            <div class="media">
-                <div class="media-body">
-                    <h3 class="mt-0 mb-1">Media object</h3>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus
-                    odio,
-                    vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                    fringilla.
-                    Donec
-                    lacinia congue felis in faucibus.
+$mysql_handler = new CustomMysql();
+$mysql_handler->connect($mysql_host, $mysql_username, $mysql_password, $mysql_database);
+
+    foreach ( $mysql_handler->fetch_data("SELECT title, content, year  FROM `main_content` ORDER BY year DESC ") as $row ) {
+        echo "<div class='row'>
+        <div class='col-9' id='content_history_left'>
+            <div id='co'
+
+            <div class='media'>
+                <div class='media-body'>
+                    <h3 class='mt-0 mb-1'>" . $row['title'] . "</h3>
+                    " . $row['content'] . "
+      
                 </div>
             </div>
         </div>
-        <div class="col-3" id="content_history_right">
-           / 2012
+        <div class='col-3' id='content_history_right'>
+           / " . $row['year'] . " 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-9" id="content_history_left">
-            <div id="co"
+    </div>";
+    }
 
-            <div class="media">
-                <div class="media-body">
-                    <h3 class="mt-0 mb-1">Media object</h3>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus
-                    odio,
-                    vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                    fringilla.
-                    Donec
-                    lacinia congue felis in faucibus.
-                </div>
-            </div>
-        </div>
-        <div class="col-3" id="content_history_right">
-            / 2013
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-9" id="content_history_left">
-            <div id="co"
 
-            <div class="media">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">Media object</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus
-                    odio,
-                    vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                    fringilla.
-                    Donec
-                    lacinia congue felis in faucibus.
-                </div>
-            </div>
-        </div>
-        <div class="col-3" id="content_history_right">
-            / 2014
-        </div>
-    </div>
+
+
+    ?>
 </div>
 
 </body>

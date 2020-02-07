@@ -1,7 +1,5 @@
 <?php
 
-use MongoDB\Driver\Exception\ConnectionException;
-
 # a lightweight class to implement the possibility to create a stable connection to a mysql data source
 # Author:: Dustin Wickert
 class CustomMysql
@@ -24,7 +22,7 @@ class CustomMysql
     private function check_if_connection_stable()
     {
         if (!$this->connection) {
-            throw new ConnectionException("First you have to establish a connection with the connect method");
+            throw new Exception("Error: First you have to call the connect function. Otherwise this object is useless!");
         }
     }
 
@@ -32,22 +30,33 @@ class CustomMysql
     public function fetch_data($query_expression)
     {
         $this->check_if_connection_stable();
-        $res = mysqli_query($this->connection, $query_expression);
-        return $res;
+        return mysqli_query($this->connection, $query_expression);
     }
 
     # a public method to fetch rows in a array format, including the rows as a string.
-    public function fetch_rows($query_expression) {
-        $rows = $this->fetch_data($query_expression)->fetch_assoc();
-        return $rows;
+    #TODO:: FIXEN
+    public function fetch_row_as_array($query_expression) {
+        return $this->fetch_data($query_expression)->fetch_assoc();
+
+    }
+
+    public function fetch_rows_as_array($query_expression){
+        $res = mysqli_query($this->connection, $query_expression);
+        return mysqli_fetch_array($res, MYSQLI_ASSOC);
     }
 
     # a public method to insert data into a table
     public function insert_data($query_expression)
     {
+        $allowed_statement = "INSERT INTO";
+        if(strpos($query_expression, $allowed_statement) === false) {
+            throw new Exception("Error: this function is only for MySQL-insert statements");
+        }
         $this->check_if_connection_stable();
-        $this->connection->query($query_expression);
-        return true;
+        if($this->connection->query($query_expression)) {
+            return true;
+        }
+        return false;
     }
 
     public function close_stream() {

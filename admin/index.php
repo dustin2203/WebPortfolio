@@ -70,6 +70,7 @@ print_r($_SESSION);
 </div>
 <div class="container-fluid" id="content_news">
     <h2>News</h2>
+    <h4>Coming soon</h4>
     <!-- Flexbox container for aligning the toasts -->
     <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
 
@@ -91,25 +92,17 @@ print_r($_SESSION);
 
 </div>
 <div class="container" id="content_insert_achievement">
-    <h2>Neue Leistung erstellen</h2>
+    <h2>Create a new achievement</h2>
     <form action="../system/scripts/insert_achievement_script.php" method="post">
         <div class="form-group">
-            <label for="exampleFormControlInput1">Titel</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Bsp: 7 Jahre Studium an der HAW absolviert" name="achievement_title">
+            <label for="exampleFormControlInput1">Title*</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bsp: 7 Jahre Studium an der HAW absolviert" name="achievement_title" required>
+            <label for="exampleFormControlInput2">Year*</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Bsp: 2010" name="achievement_year" required>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Inhalt</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="achievement_content"></textarea>
+            <label for="exampleFormControlTextarea1">Content*</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="achievement_content" required></textarea>
         </div>
         <input type="submit" class="btn btn-primary btn-block" value="Erstellen">
     </form>
