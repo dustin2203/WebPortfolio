@@ -1,3 +1,41 @@
 h2 {
     text-align: center;
 }
+#content_news {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+#content_insert_achievement {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+body {
+    background: #6441A5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#content_login_informations, #content_stats_left, #content_stats_right, #content_insert_achievement {
+    border: 2px solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.75);
+}
+#content_heading {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+}
+
+#content_stats > h2, #content_news > h2{
+    color: lightblue;
+}
+#content_news > .row > .col-sm-4 > .card {
+
+}
+#content_news > .row > .col-sm-4 > .card > .card-body{
+
+}

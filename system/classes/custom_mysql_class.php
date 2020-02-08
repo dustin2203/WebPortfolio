@@ -59,6 +59,10 @@ class CustomMysql
         return false;
     }
 
+    public function create_table($query_expression) {
+        $allowed_statement = "CREATE";
+    }
+
     public function close_stream() {
         $this->connection->close();
         return true;
