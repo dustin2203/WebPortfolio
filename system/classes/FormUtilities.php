@@ -1,6 +1,6 @@
 <?php
 
-require("classes.php");
+require("Classes.inc.php");
 
 # a class to implement useful form methods to verify a specific form.
 # Author:: Dustin Wickert
@@ -16,12 +16,6 @@ class FormUtilities
         $this->connection = new CustomMysql();
         $this->connection->connect($host, $user, $password, $database);
 
-    }
-
-    # destruct method executed when object is getting destroyed
-    function __destruct()
-    {
-        $this->connection->close_stream();
     }
 
 # private method to check if all fields are filled in.

@@ -1,9 +1,9 @@
 <?php
 //Website Components
-$head_import = require_once('./components/head_import.html');
-$navbar = require_once('./components/navbar.html');
-require_once('./system/classes/classes.php');
-include_once('./system/mysql_settings.php');
+$head_import = require_once('./components/head.inc.html');
+$navbar = require_once('./components/navbar.inc.html');
+require_once('./system/classes/Classes.inc.php');
+include_once('./system/mysql_settings.inc.php');
 
 ?>
 
@@ -53,7 +53,9 @@ include_once('./system/mysql_settings.php');
 $mysql_handler = new CustomMysql();
 $mysql_handler->connect($mysql_host, $mysql_username, $mysql_password, $mysql_database);
 
-    foreach ( $mysql_handler->fetch_data("SELECT title, content, year  FROM `main_content` ORDER BY year DESC ") as $row ) {
+
+
+    foreach ( $mysql_handler->fetch_data(["title", "content", "year"], "main_content",  "ORDER BY year DESC")  as $row ) {
         echo "<div class='row'>
         <div class='col-9' id='content_history_left'>
             <div id='co'

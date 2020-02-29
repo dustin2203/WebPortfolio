@@ -17,7 +17,7 @@ class Session
     public function check_if_value_set($session_value)
     {
         if (@$_SESSION[$session_value] == false) {
-            die("Bitte logge dich zuerst ein! <a href='http://localhost/Portfolio/admin/login.php'>Im Panel anmelden!</a>");
+            die("Bitte logge dich zuerst ein! <a href='http://localhost/Portfolio/admin/Login.php'>Im Panel anmelden!</a>");
         }
         return true;
     }

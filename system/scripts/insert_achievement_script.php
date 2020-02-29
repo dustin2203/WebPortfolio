@@ -1,10 +1,10 @@
 <?php
 session_start();
-require('../classes/classes.php');
-include('../mysql_settings.php');
-require_once '../classes/session.php';
+require('../classes/Classes.inc.php');
+include('../mysql_settings.inc.php');
+require_once '../classes/Session.php';
 $session_handler = new Session;
-$session_handler->check_if_login_session_set("logged_in", true, "login.php");
+$session_handler->check_if_login_session_set("logged_in", true, "Login.php");
 
 
 $achievement_title = (isset($_POST['achievement_title']) && is_string($_POST['achievement_title'])) ? $_POST['achievement_title'] : "" ;

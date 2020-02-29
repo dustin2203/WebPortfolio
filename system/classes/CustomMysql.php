@@ -33,9 +33,9 @@ class CustomMysql
 
 
     # a public method to fetch rows in a array format, including the rows as a string.
-    public function fetch_row_as_array($query_expression)
+    public function fetch_row_as_array(array $rows, string $table, string $extra_option = NULL)
     {
-        return $this->fetch_data($query_expression)->fetch_assoc();
+        return $this->fetch_data($rows, $table, $extra_option)->fetch_assoc();
 
     }
 
@@ -46,30 +46,31 @@ class CustomMysql
     }
 
     # a public method to insert data into a table
-    function insert_data($query_expression)
+    function insert_data(string $table, array $rows, array $values, string $extra_option = NULL)
     {
-        $allowed_statement = "INSERT INTO";
-        if (strpos($query_expression, $allowed_statement) === false) {
-            throw new Exception("Error: this function is only for MySQL-insert statements");
+        $rows = $this->process_array_rows($rows);
+        $values = $this->process_array_rows($values);
+        if (!isset($extra_option)) {
+            return $this->connection->query("INSERT INTO $table($rows) VALUES ($values)");
         }
-        $this->check_if_connection_stable();
-        if ($this->connection->query($query_expression)) {
-            return true;
-        }
-        return false;
+
+        return $this->connection->query("INSERT INTO $table($rows) VALUES ($values) " . $extra_option);
     }
 
     public final function create_table($query_expression)
     {
-        $allowed_statement = "CREATE";
+        $allowed_statement = "CREATE TABLE IF NOT EXISTS";
         if (strpos($query_expression, $allowed_statement) === false) {
             throw new Exception("Error: this function is only for MySQL-create statements");
         }
         $this->check_if_connection_stable();
+
         if ($this->connection->query($query_expression)) {
             return true;
+        } else {
+            echo "Error: Table is already existing";
+            return false;
         }
-        return false;
     }
 
     private function close_stream()

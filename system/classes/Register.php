@@ -1,5 +1,5 @@
 <?php
-require("classes.php");
+require("Classes.inc.php");
 
 # author:: Dustin Wickert
 # a class to implement the register procedure
@@ -14,7 +14,7 @@ class Register extends FormUtilities
 
     protected final function check_if_user_exists($email, $username)
     {
-        $res = $this->connection->fetch_data("SELECT * FROM `users`  WHERE `email` = '$email' OR `username` = '$username'");
+        $res = $this->connection->fetch_data(["*"], "users", "WHERE `email` = '$email' OR `username` = '$username'");
         if ($res->num_rows > 0) {
             return true;
         } else {
@@ -37,7 +37,7 @@ class Register extends FormUtilities
         }
 
         $crypted_password = $this->password_hash($password);
-        $this->connection->insert_data("INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$crypted_password')");
+        $this->connection->insert_data("users", ["username", "email", "password"], [$username, $email, $crypted_password] );
         echo "Du wurdest erfolgreich registiert";
 
 

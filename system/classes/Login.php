@@ -1,13 +1,13 @@
 <?php
 
-require("classes.php");
+require("Classes.inc.php");
 
 class Login extends FormUtilities
 {
 
     private final function check_if_user_exists($username)
     {
-        $res = $this->connection->fetch_data("SELECT * FROM `users`  WHERE `username` = '$username'");
+        $res = $this->connection->fetch_data(["*"], "users", "WHERE `username` = '$username'");
         if ($res->num_rows > 0) {
             return true;
         } else {
@@ -17,13 +17,12 @@ class Login extends FormUtilities
 
     private final function get_user_information($username)
     {
-        $res = $this->connection->fetch_row_as_array("SELECT * FROM `users`  WHERE `username` = '$username'");
-        return $res;
+        return $this->connection->fetch_row_as_array(["*"], "users", "WHERE `username` = '$username'");
     }
 
     private function check_password($username, $input_password)
     {
-        $res = $this->connection->fetch_row_as_array("SELECT password FROM `users`  WHERE `username` = '$username'");
+        $res = $this->connection->fetch_row_as_array(["password"], "users", "WHERE `username` = '$username'");
         $stored_password = $res['password'];
         if (password_verify($input_password, $stored_password)) {
             return true;
@@ -48,7 +47,7 @@ class Login extends FormUtilities
             echo "Fehler: dieses Passwort oder dieser Benutzername stimmen nicht ueberein";
             return false;
         }
-        echo "Du wst erfolgreich eingeloggt";
+        echo "Login was successful";
         $_SESSION['logged_in'] = true;
         $user_informations = $this->get_user_information($username);
         $_SESSION['username'] = $user_informations['username'];
@@ -56,7 +55,7 @@ class Login extends FormUtilities
         $_SESSION['created_at'] = $user_informations['created_at'];
         $_SESSION['updated_at'] = $user_informations['updated_at'];
         $_SESSION['perm_group'] = $user_informations['perm_group'];
-            
+
         header("Location: http://localhost/Portfolio/admin/index.php");
         return true;
     }

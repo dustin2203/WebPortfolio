@@ -1,7 +1,7 @@
 <?php
-require('../classes/custom_mysql_class.php');
-require('../classes/register_class.php');
-include('../mysql_settings.php');
+require('../classes/CustomMysql.php');
+require('../classes/Register.php');
+include('../mysql_settings.inc.php');
 
 # security section
 $user_name = (isset($_POST['username']) && is_string($_POST['username'])) ? $_POST['username'] : "" ;

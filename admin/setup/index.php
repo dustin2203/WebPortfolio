@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once ('../../system/classes/classes.php');
-require_once ('../../system/mysql_settings.php');
-require_once ('../../system/database_expressions.php');
+require_once('../../system/classes/Classes.inc.php');
+require_once('../../system/mysql_settings.inc.php');
+require_once('../../system/database_expressions.inc.php');
 ?>
 
 <html>

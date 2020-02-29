@@ -4,10 +4,10 @@ session_start();
 
 <html>
 <head>
-    <?php require_once('../components/header_import.html'); ?>
+    <?php require_once('../components/head.inc.html'); ?>
 </head>
 <body>
-<?php require_once('../components/navbar.html'); ?>
+<?php require_once('../components/navbar.inc.html'); ?>
 <div class="container-fluid" id="content">
     <h1>Project Changelog</h1>
     <div class="container" id="content_insert_change">

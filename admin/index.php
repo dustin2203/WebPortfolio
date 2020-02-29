@@ -1,15 +1,15 @@
 <?php
 session_start();
-require_once '../system/classes/session.php';
+require_once '../system/classes/Session.php';
 $session_handler = new Session;
-$session_handler->check_if_login_session_set("logged_in", true, "login.php");
+$session_handler->check_if_login_session_set("logged_in", true, "Login.php");
 ?>
 <!doctype html>
 <html lang="de">
 <head>
     <?php
-    require_once("./components/header_import.html");
-    require_once("./components/navbar.html");
+    require_once("./components/head.inc.html");
+    require_once("./components/navbar.inc.html");
     ?>
     <title>Admin Panel</title>
 </head>
@@ -133,6 +133,6 @@ $session_handler->check_if_login_session_set("logged_in", true, "login.php");
 </div>
 </body>
 
-<?php require_once('./components/footer.html');?>
+<?php require_once('./components/footer.inc.html');?>
 
 </html>
